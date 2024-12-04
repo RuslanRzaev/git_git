@@ -19,8 +19,8 @@ class MyWidget(QMainWindow):
 
     def button_handler(self):
         diameter = randint(10, 100)
-        x = randint(0, 400)
-        y = randint(0, 400)
+        x = 300
+        y = 300
         self.rect = QRectF(x, y, diameter, diameter)
         self.color = QColor(QColor('yellow'))
         self.update()
