@@ -1,28 +1,25 @@
 import io
+import random
 import sys
 from random import randint
 
-from PyQt6 import uic
-from PyQt6.QtCore import QRectF, Qt
+from PyQt6.QtCore import QRectF
 from PyQt6.QtGui import QColor, QPainter
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QDialog
+from ui import Ui_MainWindow
 
-with open('ui.ui', encoding='utf-8') as f:
-    template1 = f.read()
-
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        f = io.StringIO(template1)
-        uic.loadUi(f, self)
+        self.setupUi(self)
         self.pushButton.clicked.connect(self.button_handler)
 
     def button_handler(self):
         diameter = randint(10, 100)
-        x = randint(0, 400)
-        y = randint(0, 400)
+        x = 300
+        y = 300
         self.rect = QRectF(x, y, diameter, diameter)
-        self.color = QColor(QColor('yellow'))
+        self.color = QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
         self.update()
 
     def paintEvent(self, event):
